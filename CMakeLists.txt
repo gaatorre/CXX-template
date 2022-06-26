@@ -58,10 +58,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # including helpers
 # Git must remain at the top since it checks out all the submodules
 include("${CMAKE_MODULE_PATH}/findGit.cmake")
-include("${CMAKE_MODULE_PATH}/findCatch2.cmake")
+add_subdirectory("extern/Catch2")
+add_subdirectory("extern/spdlog")
 
 # Find packages go here
-
 
 # The compiled library code is here
 add_subdirectory(src)

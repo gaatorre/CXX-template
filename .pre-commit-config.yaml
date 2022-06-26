@@ -1,9 +1,9 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 
-# Don't run pre-commit on files under third-party/
+# Don't run pre-commit on files under extern/
 exclude: "^\
-  (third-party/.*)\
+  (extern/.*)\
   "
 
 repos:

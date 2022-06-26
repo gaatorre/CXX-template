@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include <spdlog/spdlog.h>
 
 int
 main(void)
 {
-    printf("Hello, World!\n");
+    spdlog::info("Hello, World!");
 }
