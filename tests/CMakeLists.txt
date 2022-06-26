@@ -1,2 +1,2 @@
-# add_executable(app main.cpp)
-# target_compile_features(app PRIVATE cxx_std_17)
+add_executable(tests test.cpp)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
