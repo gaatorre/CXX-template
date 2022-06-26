@@ -15,14 +15,20 @@ project(
   VERSION 1.0
   LANGUAGES CXX)
 
+# Add cmake helpers
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+
+# including helpers
+# Git must remain at the top since it checks out all the submodules
+include("${CMAKE_MODULE_PATH}/findGit.cmake")
+add_subdirectory("extern/Catch2")
+add_subdirectory("extern/spdlog")
+
 # Only do these if this is the main project, and not if it is included through add_subdirectory
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   # Set build mode
   set(CMAKE_BUILD_TYPE ${build})
-
-  # Add cmake helpers
-  set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
   # Set the include dir
   include_directories("${CMAKE_SOURCE_DIR}/include")
@@ -39,7 +45,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   # Note this needs to be done in the main CMakeLists
   # since it calls enable_testing, which must be in the
   # main CMakeLists.
-  # include(CTest)
+  include(CTest)
+  include(Catch)
 
   # Docs only available if this is the main app
   # find_package(Doxygen)
@@ -54,12 +61,6 @@ endif()
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
-# including helpers
-# Git must remain at the top since it checks out all the submodules
-include("${CMAKE_MODULE_PATH}/findGit.cmake")
-add_subdirectory("extern/Catch2")
-add_subdirectory("extern/spdlog")
 
 # Find packages go here
 
