@@ -6,6 +6,13 @@ PROJ=template
 NUM_PROC=$(nproc)
 BUILD=Release
 
+GIT_HOOK=./.git/hooks/pre-commit
+if [ -f "$GIT_HOOK" ]; then
+    echo > /dev/null
+else
+    ./scripts/init.sh
+fi
+
 usage() { echo "Usage: $0 [-d Builds in debug mode]" 1>&2; exit 1; }
 
 while getopts "d" o; do
